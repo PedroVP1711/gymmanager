@@ -1,0 +1,9 @@
+<h1>Nueva Inscripción</h1>
+
+{{ form_start(form) }}
+{{ form_row(form.socio) }}
+{{ form_row(form.clase) }}
+<button type="submit">Inscribir</button>
+{{ form_end(form) }}
+
+<a href="{{ path('inscripcion_index') }}">Volver</a>

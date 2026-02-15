@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Clases{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Clases</h1>
+        <a href="{{ path('clase_new') }}" class="btn btn-success mb-3">Nueva Clase</a>
+
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th style="border: 2px solid black;">ID</th>
+                <th style="border: 2px solid black;">Nombre</th>
+                <th style="border: 2px solid black;">Tipo</th>
+                <th style="border: 2px solid black;">Hora</th>
+                <th style="border: 2px solid black;">Entrenador</th>
+                <th style="border: 2px solid black;">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for clase in clases %}
+                <tr>
+                    <td style="border: 2px solid black;">{{ clase.id }}</td>
+                    <td style="border: 2px solid black;">{{ clase.nombre }}</td>
+                    <td style="border: 2px solid black;">{{ clase.tipo }}</td>
+                    <td style="border: 2px solid black;">{{ clase.hora ? clase.hora|date('H:i') : '' }}</td>
+                    <td style="border: 2px solid black;">{{ clase.entrenador ? clase.entrenador.nombre ~ ' ' ~ clase.entrenador.apellido : '' }}</td>
+                    <td style="border: 2px solid black;">
+                        <a href="{{ path('clase_edit', {id: clase.id}) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ path('clase_delete', {id: clase.id}) }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres eliminar esta clase?')">Eliminar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center" style="border: 2px solid black;">No hay clases</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

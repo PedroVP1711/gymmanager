@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulario de Clase{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>{{ form.vars.value.id ? 'Editar Clase' : 'Nueva Clase' }}</h1>
+
+        {{ form_start(form) }}
+
+        <table class="table table-bordered table-striped mt-3">
+            <tbody>
+            <tr>
+                <th>{{ form_label(form.nombre) }}</th>
+                <td>{{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.tipo) }}</th>
+                <td>{{ form_widget(form.tipo, {'attr': {'class': 'form-control'}}) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.hora) }}</th>
+                <td>{{ form_widget(form.hora, {'attr': {'class': 'form-control'}}) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.entrenador) }}</th>
+                <td>{{ form_widget(form.entrenador, {'attr': {'class': 'form-control'}}) }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-primary">{{ form.guardar.vars.label|default('Guardar') }}</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

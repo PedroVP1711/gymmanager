@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Inscripciones{% endblock %}
+
+{% block body %}
+    <h1>Lista de Inscripciones</h1>
+
+    <a href="{{ path('inscripcion_new') }}">➕ Nueva Inscripción</a>
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Socio</th>
+            <th>Clase</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for inscripcion in inscripciones %}
+            <tr>
+                <td>{{ inscripcion.id }}</td>
+                <td>{{ inscripcion.fecha ? inscripcion.fecha|date('d/m/Y') : '' }}</td>
+                <td>{{ inscripcion.socio }}</td>
+                <td>{{ inscripcion.clase }}</td>
+                <td>
+
+                    <form method="post" action="{{ path('inscripcion_delete', {'id': inscripcion.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ inscripcion.id) }}">
+                        <button type="submit">🗑 Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No hay inscripciones registradas.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

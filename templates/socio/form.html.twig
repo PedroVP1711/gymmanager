@@ -1,0 +1,19 @@
+{# templates/socio/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Crear Socio{% endblock %}
+
+{% block body %}
+    <h1>Crear Socio</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.nombre) }}
+    {{ form_row(form.apellido) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.edad) }}
+    {{ form_row(form.telefono) }}
+    {{ form_row(form.fechaAlta) }}
+    {{ form_row(form.tipoMembresia) }}
+    <button class="btn">Crear Socio</button>
+    {{ form_end(form) }}
+{% endblock %}

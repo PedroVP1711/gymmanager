@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Socios{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Socios</h1>
+        <a href="{{ path('socio_new') }}" class="btn btn-success mb-3">Nuevo Socio</a>
+
+        <table class="table table-bordered">
+            <thead class="table-dark"
+            <tr>
+                <th style="border: 2px solid black;">ID</th>
+                <th style="border: 2px solid black;">Nombre</th>
+                <th style="border: 2px solid black;">Apellido</th>
+                <th style="border: 2px solid black;">Email</th>
+                <th style="border: 2px solid black;">Edad</th>
+                <th style="border: 2px solid black;">Teléfono</th>
+                <th style="border: 2px solid black;">Fecha Alta</th>
+                <th style="border: 2px solid black;">Tipo Membresía</th>
+                <th style="border: 2px solid black;">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for socio in socios %}
+                <tr>
+                    <td style="border: 2px solid black;">{{ socio.id }}</td>
+                    <td style="border: 2px solid black;">{{ socio.nombre }}</td>
+                    <td style="border: 2px solid black;">{{ socio.apellido }}</td>
+                    <td style="border: 2px solid black;">{{ socio.email }}</td>
+                    <td style="border: 2px solid black;">{{ socio.edad }}</td>
+                    <td style="border: 2px solid black;">{{ socio.telefono }}</td>
+                    <td style="border: 2px solid black;">{{ socio.fechaAlta ? socio.fechaAlta|date('Y-m-d') : '' }}</td>
+                    <td style="border: 2px solid black;">{{ socio.tipoMembresia }}</td>
+                    <td style="border: 2px solid black;">
+                        <a href="{{ path('socio_edit', {id: socio.id}) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ path('socio_delete', {id: socio.id}) }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres eliminar este socio?')">Eliminar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9" class="text-center" style="border: 2px solid black;">No hay socios</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block body %}
+    <h1>Bienvenido a la Gestión del Gimnasio</h1>
+
+    {% if app.user %}
+        <p>Bienvenido, {{ app.user.nombre }}!</p>
+        <a href="{{ path('logout') }}">Cerrar sesión</a>
+    {% else %}
+        <a href="{{ path('login') }}">Login</a>
+    {% endif %}
+
+
+    <p>Selecciona una funcionalidad:</p>
+    <ul>
+        <li><a href="{{ path('socio_index') }}">Socios</a></li>
+        <li><a href="{{ path('clase_index') }}">Clases</a></li>
+        <li><a href="{{ path('entrenador_index') }}">Entrenadores</a></li>
+        <li><a href="{{ path('inscripcion_index') }}">Inscripciones</a></li>
+    </ul>
+
+    <a href="{{ path('logout') }}">Cerrar sesión</a>
+{% endblock %}
